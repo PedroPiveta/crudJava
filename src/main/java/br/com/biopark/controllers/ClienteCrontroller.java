@@ -14,41 +14,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.biopark.models.Vendedor;
-import br.com.biopark.services.VendedorService;
+import br.com.biopark.models.Cliente;
+import br.com.biopark.services.ClienteService;
 
 @RestController
-@RequestMapping("/api/vendedor")
-public class VendedorController {
-	
+@RequestMapping("/api/cliente")
+public class ClienteCrontroller {
 	@Autowired
-	VendedorService service;
+	ClienteService service;
 	
 	@CrossOrigin(origins = "http://localhost:5173")
 	@GetMapping
-	public List<Vendedor> findAll() {
+	public List<Cliente> findAll() {
 		return service.findAll();
 	}
 	
 	@CrossOrigin(origins = "http://localhost:5173")
 	@GetMapping(value = "/{id}")
-	public Vendedor findById(@PathVariable(value = "id") Long id) {
+	public Cliente findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
 	
 	@CrossOrigin(origins = "http://localhost:5173")
 	@PostMapping
-	public ResponseEntity<?> save(@RequestBody Vendedor vendedor) {
-		service.save(vendedor);
-		return ResponseEntity.ok("Vendedor salvo");
+	public ResponseEntity<?> save(@RequestBody Cliente cliente) {
+		service.save(cliente);
+		return ResponseEntity.ok("Cliente salvo");
 	}
 	
 	@CrossOrigin(origins = "http://localhost:5173")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody Vendedor vendedor){
-		service.update(id, vendedor);
+	public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody Cliente cliente){
+		service.update(id, cliente);
 		
-		return ResponseEntity.ok("Vendedor alterado com sucesso");
+		return ResponseEntity.ok("Cliente alterado com sucesso");
 	}
 	
 	@CrossOrigin(origins = "http://localhost:5173")
@@ -56,6 +55,6 @@ public class VendedorController {
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
 		service.delete(id);
 		
-		return ResponseEntity.ok("Vendedor apagado com sucesso");
+		return ResponseEntity.ok("Cliente apagado com sucesso");
 	}
 }
